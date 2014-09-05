@@ -333,6 +333,8 @@ FbTk::Command<void> *parseIntCmd(const string &command, const string &args,
         return new RightWorkspaceCmd(num);
     else if (command == "leftworkspace")
         return new LeftWorkspaceCmd(num);
+    else if (command == "switchtoaltworkspace")
+        return new SwitchToAltWorkspaceCmd();
     else if (command == "workspace")
         // workspaces appear 1-indexed to the user, hence the minus 1
         return new JumpToWorkspaceCmd(num - 1);
@@ -343,6 +345,7 @@ REGISTER_COMMAND_PARSER(nextworkspace, parseIntCmd, void);
 REGISTER_COMMAND_PARSER(prevworkspace, parseIntCmd, void);
 REGISTER_COMMAND_PARSER(rightworkspace, parseIntCmd, void);
 REGISTER_COMMAND_PARSER(leftworkspace, parseIntCmd, void);
+REGISTER_COMMAND_PARSER(switchtoaltworkspace, parseIntCmd, void);
 REGISTER_COMMAND_PARSER(workspace, parseIntCmd, void);
 
 } // end anonymous namespace
@@ -369,6 +372,12 @@ void RightWorkspaceCmd::execute() {
     BScreen *screen = Fluxbox::instance()->mouseScreen();
     if (screen != 0)
         screen->rightWorkspace(m_param);
+}
+
+void SwitchToAltWorkspaceCmd::execute() {
+    BScreen *screen = Fluxbox::instance()->mouseScreen();
+    if (screen != 0)
+        screen->switchToAltWorkspace();
 }
 
 JumpToWorkspaceCmd::JumpToWorkspaceCmd(int workspace_num):m_workspace_num(workspace_num) { }

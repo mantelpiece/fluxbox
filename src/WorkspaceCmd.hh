@@ -159,6 +159,13 @@ private:
     const int m_param;
 };
 
+class SwitchToAltWorkspaceCmd: public FbTk::Command<void> {
+public:
+    void execute();
+private:
+};
+
+
 class JumpToWorkspaceCmd: public FbTk::Command<void> {
 public:
     explicit JumpToWorkspaceCmd(int workspace_num);

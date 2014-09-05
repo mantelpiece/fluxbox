@@ -308,6 +308,10 @@ public:
      */
     void prevWorkspace(int delta = 1);
     /**
+     * Switch to the alt workspace
+     */
+    void switchToAltWorkspace();
+    /**
      * Jump right to a workspace.
      * @param delta number of steps to jump
      */
