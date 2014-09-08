@@ -1890,7 +1890,7 @@ void BScreen::switchToAltWorkspace() {
     static bool onAltWorkspace = false;
     static int lastWorkspaceID;
     if (onAltWorkspace) {
-        onAltWorkspace = true;
+        onAltWorkspace = false;
         changeWorkspaceID(lastWorkspaceID);
     } else {
         onAltWorkspace = true;
