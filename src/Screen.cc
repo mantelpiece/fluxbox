@@ -1075,6 +1075,11 @@ void BScreen::changeWorkspaceID(unsigned int id, bool revert) {
         id == m_current_workspace->workspaceID())
         return;
 
+    // If switching to the "alt" workspace, remember where we were
+    if (id == m_workspaces_list.size() - 1) {
+      m_last_workspace_id = m_current_workspace->workspaceID();
+    }
+
     /* Ignore all EnterNotify events until the pointer actually moves */
     this->focusControl().ignoreAtPointer();
 
@@ -1887,6 +1892,7 @@ void BScreen::prevWorkspace(int delta) {
  * Goes to the last workspace
  */
 void BScreen::switchToAltWorkspace() {
+    /*
     static bool onAltWorkspace = false;
     static int lastWorkspaceID;
     if (onAltWorkspace) {
@@ -1895,6 +1901,12 @@ void BScreen::switchToAltWorkspace() {
     } else {
         onAltWorkspace = true;
         lastWorkspaceID = currentWorkspaceID();
+        changeWorkspaceID(numberOfWorkspaces() - 1);
+    }
+    */
+    if (currentWorkspaceID() == numberOfWorkspaces() - 1) {
+        changeWorkspaceID(m_last_workspace_id);
+    } else {
         changeWorkspaceID(numberOfWorkspaces() - 1);
     }
 }

@@ -514,6 +514,7 @@ private:
     std::auto_ptr<Toolbar> m_toolbar;
 
     Workspace *m_current_workspace;
+    int m_last_workspace_id;
 
     WorkspaceNames m_workspace_names;
     Workspaces m_workspaces_list;
